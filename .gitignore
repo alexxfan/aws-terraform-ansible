@@ -6,3 +6,4 @@ venv/
 ansible_venv.terraform/
 *.tfstate
 *.tfstate.backup
+terraform/.terraform/
