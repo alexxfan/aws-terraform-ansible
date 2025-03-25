@@ -3,4 +3,6 @@ terraform/terraform-ansible-key.pem
 terraform.tfstate
 terraform.tfstate.backup
 venv/
-ansible_venv
+ansible_venv.terraform/
+*.tfstate
+*.tfstate.backup
