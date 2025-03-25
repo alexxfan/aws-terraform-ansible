@@ -1,0 +1,30 @@
+{
+  "_meta": {
+    "hostvars": {
+      "webserver1": {
+        "ansible_host": "10.0.2.199",
+        "ansible_ssh_common_args": "-o ProxyCommand=\"ssh -i /Users/alexfan/terraform-ansible-aws/terraform/terraform-ansible-key.pem -o StrictHostKeyChecking=no -W %h:%p ec2-user@50.17.150.29\"",
+        "ansible_ssh_private_key_file": "/Users/alexfan/terraform-ansible-aws/terraform/terraform-ansible-key.pem"
+      },
+      "webserver2": {
+        "ansible_host": "10.0.2.60",
+        "ansible_ssh_common_args": "-o ProxyCommand=\"ssh -i /Users/alexfan/terraform-ansible-aws/terraform/terraform-ansible-key.pem -o StrictHostKeyChecking=no -W %h:%p ec2-user@50.17.150.29\"",
+        "ansible_ssh_private_key_file": "/Users/alexfan/terraform-ansible-aws/terraform/terraform-ansible-key.pem"
+      },
+      "haproxy": {
+        "ansible_host": "50.17.150.29"
+      }
+    }
+  },
+  "webservers": {
+    "hosts": {
+      "webserver1": {},
+      "webserver2": {}
+    }
+  },
+  "haproxy": {
+    "hosts": {
+      "haproxy": {}
+    }
+  }
+}

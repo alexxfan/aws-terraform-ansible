@@ -1,0 +1,60 @@
+{
+  "haproxy_public_dns": {
+    "sensitive": false,
+    "type": "string",
+    "value": "ec2-54-224-245-65.compute-1.amazonaws.com"
+  },
+  "haproxy_public_ip": {
+    "sensitive": false,
+    "type": "string",
+    "value": "54.224.245.65"
+  },
+  "private_subnet_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "subnet-0c269daa1dbd68e72"
+  },
+  "public_subnet_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "subnet-053f4a63db3a6c33d"
+  },
+  "ssh_key_path": {
+    "sensitive": false,
+    "type": "string",
+    "value": "./terraform-ansible-key.pem"
+  },
+  "vpc_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "vpc-094855b6319d85a51"
+  },
+  "webserver_ids": {
+    "sensitive": false,
+    "type": [
+      "tuple",
+      [
+        "string",
+        "string"
+      ]
+    ],
+    "value": [
+      "i-00df9933d32ce96ae",
+      "i-0f37d3042dfac8549"
+    ]
+  },
+  "webserver_private_ips": {
+    "sensitive": false,
+    "type": [
+      "tuple",
+      [
+        "string",
+        "string"
+      ]
+    ],
+    "value": [
+      "10.0.2.34",
+      "10.0.2.96"
+    ]
+  }
+}

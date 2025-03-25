@@ -1,0 +1,17 @@
+---
+#HAProxy playbook
+- name: Configure HAProxy
+  hosts: haproxy
+  become: true
+  gather_facts: true
+  
+  roles:
+    - common
+    - haproxy
+#start HAProxy
+  tasks:
+    - name: Ensure HAProxy is started and enabled at boot
+      systemd:
+        name: haproxy
+        state: started
+        enabled: yes

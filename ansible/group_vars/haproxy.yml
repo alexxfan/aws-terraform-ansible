@@ -1,0 +1,51 @@
+---
+#HAProxy config variables
+haproxy_global_options:
+  - "log /dev/log local0"
+  - "log /dev/log local1 notice"
+  - "chroot /var/lib/haproxy"
+  - "stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners"
+  - "stats timeout 30s"
+  - "user haproxy"
+  - "group haproxy"
+  - "daemon"
+
+haproxy_defaults_options:
+  - "log global"
+  - "mode http"
+  - "option httplog"
+  - "option dontlognull"
+  - "timeout connect 5000"
+  - "timeout client 50000"
+  - "timeout server 50000"
+  - "errorfile 400 /etc/haproxy/errors/400.http"
+  - "errorfile 403 /etc/haproxy/errors/403.http"
+  - "errorfile 408 /etc/haproxy/errors/408.http"
+  - "errorfile 500 /etc/haproxy/errors/500.http"
+  - "errorfile 502 /etc/haproxy/errors/502.http"
+  - "errorfile 503 /etc/haproxy/errors/503.http"
+  - "errorfile 504 /etc/haproxy/errors/504.http"
+
+#HAProxy frontend config
+haproxy_frontend_name: "http-in"
+haproxy_frontend_bind_address: "*"
+haproxy_frontend_bind_port: "80"
+haproxy_frontend_options:
+  - "default_backend web-backend"
+
+#HAProxy backend config
+haproxy_backend_name: "web-backend"
+haproxy_backend_options:
+  - "balance roundrobin"
+  - "option httpchk GET / HTTP/1.1\r\nHost:\ localhost"
+  - "http-check expect status 200"
+  - "cookie SERVERID insert indirect nocache"
+
+#web servers to load balance - gets hard coded from terraform output json file
+haproxy_backend_servers: ["10.0.2.241","10.0.2.139"]
+
+#HAProxy stats configuration
+haproxy_stats_enabled: true
+haproxy_stats_uri: /haproxy-stats
+haproxy_stats_user: admin
+haproxy_stats_password: password123

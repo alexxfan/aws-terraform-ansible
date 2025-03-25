@@ -1,0 +1,60 @@
+---
+#HAProxy role tasks
+
+- name: Install HAProxy
+  yum:
+    name: haproxy
+    state: present
+
+- name: Create HAProxy directory structure
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  loop:
+    - /etc/haproxy
+    - /var/lib/haproxy
+    - /run/haproxy
+
+- name: Configure HAProxy
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+    owner: root
+    group: root
+    mode: 0644
+  notify: Restart HAProxy
+
+- name: Configure SELinux for HAProxy
+  seboolean:
+    name: haproxy_connect_any
+    state: yes
+    persistent: yes
+  when: ansible_selinux.status == "enabled"
+
+- name: Configure firewall for HAProxy
+  firewalld:
+    service: "{{ item }}"
+    permanent: yes
+    state: enabled
+    immediate: yes
+  loop:
+    - http
+    - https
+  when: firewall_enabled | default(true) | bool
+
+- name: Open HAProxy stats port in firewall
+  ansible.posix.firewalld:
+    port: 9000/tcp
+    permanent: yes
+    state: enabled
+    immediate: yes
+  become: true
+
+- name: Start and enable HAProxy
+  systemd:
+    name: haproxy
+    state: started
+    enabled: yes

@@ -1,0 +1,2 @@
+[haproxy]
+haproxy ansible_host=13.217.144.15

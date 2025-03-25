@@ -1,0 +1,7 @@
+---
+#playbook to run all roles
+- name: Import HAProxy playbook
+  import_playbook: haproxy.yml
+
+- name: Import Webservers playbook
+  import_playbook: webservers.yml

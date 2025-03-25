@@ -1,0 +1,6 @@
+---
+#HAProxy role variables
+haproxy_stats_enabled: true
+haproxy_stats_uri: /haproxy-stats
+haproxy_stats_user: admin
+haproxy_stats_password: password123 #hardcoded password

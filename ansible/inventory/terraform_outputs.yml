@@ -1,0 +1,6 @@
+# Terraform-generated dynamic inventory for Ansible
+terraform_outputs:
+  haproxy_public_ip: 54.224.245.65
+  webserver1_private_ip: 10.0.2.34
+  webserver2_private_ip: 10.0.2.96
+  key_file: ./terraform-ansible-key.pem

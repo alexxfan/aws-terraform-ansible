@@ -1,0 +1,18 @@
+---
+#webservers playbook
+- name: Configure Nginx Webservers
+  hosts: webservers  #changed from tag_role_webserver to webservers
+  become: true
+  gather_facts: true
+  
+  roles:
+    - common
+    - nginx
+
+#start Nginx on startup
+  tasks:
+    - name: Ensure Nginx is started and enabled at boot
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes

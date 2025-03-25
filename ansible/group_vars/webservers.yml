@@ -1,0 +1,47 @@
+---
+#Nginx config variables
+nginx_port: 80
+nginx_server_name: "_"  #listen on all interfaces
+nginx_root: /var/www/html
+nginx_index: index.html
+nginx_worker_processes: auto
+nginx_worker_connections: 1024
+nginx_keepalive_timeout: 65
+nginx_server_tokens: "off"
+
+#webpage content
+website_content: |
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>Terraform & Ansible AWS Demo</title>
+    <style>
+      body {
+        width: 80%;
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding-top: 50px;
+      }
+      h1 {
+        color: #333;
+      }
+      .server-info {
+        background-color: #f4f4f4;
+        border-radius: 5px;
+        padding: 20px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to Terraform & Ansible AWS Demo</h1>
+    <div class="server-info">
+      <h2>Server Information</h2>
+      <p>Server: {{ ansible_hostname }}</p>
+      <p>IP Address: {{ ansible_default_ipv4.address }}</p>
+      <p>Operating System: {{ ansible_distribution }} {{ ansible_distribution_version }}</p>
+      <p>Current Time: {{ ansible_date_time.iso8601 }}</p>
+    </div>
+  </body>
+  </html>

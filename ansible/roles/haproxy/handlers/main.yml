@@ -1,0 +1,7 @@
+---
+# HAProxy role handlers
+
+- name: Restart HAProxy
+  systemd:
+    name: haproxy
+    state: restarted

@@ -1,0 +1,20 @@
+---
+#common variables for all servers
+ansible_user: ec2-user
+ansible_ssh_private_key_file: "{{ lookup('env', 'PWD') }}/../terraform/terraform-ansible-key.pem" #generated key.pem
+ansible_python_interpreter: /usr/bin/python3
+
+#load teeraform output file
+terraform_state: "{{ lookup('file', './terraform_state.json') | from_json }}"
+
+#install on servers
+common_packages:
+  - vim
+  - htop
+  - curl
+  - wget
+  - tree
+  - git
+
+#firewall config
+firewall_enabled: true

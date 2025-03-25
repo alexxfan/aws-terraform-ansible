@@ -1,0 +1,8 @@
+---
+#Nginx role variables
+
+#custom values that might be encrypted with Ansible Vault
+nginx_custom_settings:
+  client_max_body_size: "10M"
+  gzip_comp_level: 4
+  gzip_types: "text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript"

@@ -1,0 +1,18 @@
+server {
+    listen       {{ nginx_port }};
+    server_name  {{ nginx_server_name }};
+
+    root   {{ nginx_root }};
+    index  {{ nginx_index }};
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    # Add custom error pages
+    error_page  404              /404.html;
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}

@@ -1,0 +1,47 @@
+---
+#common tasks for all servers
+
+- name: Update all packages
+  yum:
+    name: '*'
+    state: latest
+    update_only: yes
+
+- name: Install common packages
+  yum:
+    name: "{{ common_packages | default(['vim', 'wget', 'htop', 'git']) }}"
+    state: present
+
+- name: Set timezone
+  community.general.timezone:
+    name: UTC
+
+- name: Configure firewalld
+  block:
+    - name: Install firewalld
+      yum:
+        name: firewalld
+        state: present
+      when: firewall_enabled | default(true) | bool
+
+    - name: Start and enable firewalld
+      systemd:
+        name: firewalld
+        state: started
+        enabled: yes
+      when: firewall_enabled | default(true) | bool
+  when: firewall_enabled | default(true) | bool
+
+- name: Set up SSH hardening #control how system users can log in to the server
+  block:
+    - name: Ensure SSH configuration is secure
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+        state: present
+      loop:
+        - { regexp: '^PasswordAuthentication', line: 'PasswordAuthentication no' }
+        - { regexp: '^PermitRootLogin', line: 'PermitRootLogin no' }
+        - { regexp: '^X11Forwarding', line: 'X11Forwarding no' }
+      notify: Restart sshd

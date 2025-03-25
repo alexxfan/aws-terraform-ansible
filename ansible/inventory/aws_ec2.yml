@@ -1,0 +1,20 @@
+# AWS EC2 Dynamic Inventory Plugin Configuration
+plugin: aws_ec2
+regions:
+  - us-east-1  
+keyed_groups:
+  #create groups based on tag_role
+  - key: tags.Role
+    prefix: tag_role
+  #create groups based on instance state
+  - key: instance_state
+    prefix: instance_state
+
+#filter to include only the instances in VPC
+filters:
+  tag:Project: terraform-ansible-aws  #match the tag set in terraform
+
+#compose variables for each host
+compose:
+  #set ansible host to the public IP for instances with a public address
+  ansible_host: public_ip_address or private_ip_address
