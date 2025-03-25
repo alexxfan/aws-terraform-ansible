@@ -2,3 +2,5 @@ ansible/.vault_pass.txt
 terraform/terraform-ansible-key.pem
 terraform.tfstate
 terraform.tfstate.backup
+venv/
+ansible_venv
