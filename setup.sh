@@ -75,13 +75,6 @@ WEBSERVER2_IP=$(terraform output -json webserver_private_ips | jq -r '.[1]')
 echo "==== Setting up Ansible configuration ===="
 cd ../ansible
 
-# # Create vault password if it doesn't exist
-# if [ ! -f ".vault_pass.txt" ]; then
-#   echo "Creating Ansible Vault password file..."
-#   echo "secure-password" > .vault_pass.txt
-#   chmod 600 .vault_pass.txt
-# fi
-
 #create SSH config to disable host key checking
 mkdir -p ~/.ssh
 cat > ~/.ssh/config << EOF
@@ -329,7 +322,7 @@ fi
 
 #wait for instances to be ready
 echo "Waiting for instances to be ready (this may take a minute)..."
-# sleep 60
+sleep 60
 
 #test SSH connection to HAProxy
 echo "Testing SSH connection to HAProxy..."

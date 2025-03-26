@@ -25,8 +25,8 @@ frontend {{ haproxy_frontend_name }}
 
 backend {{ haproxy_backend_name }}
     balance roundrobin
-    server webserver1 10.0.2.34:80 check
-    server webserver2 10.0.2.113:80 check
+    server webserver1 10.0.2.232:80 check
+    server webserver2 10.0.2.161:80 check
 
 {% if haproxy_stats_enabled %}
 listen stats
