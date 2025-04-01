@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: aws-terraform-ansible
+  annotations:
+    github.com/project-slug: alexxfan/aws-terraform-ansible
+spec:
+  type: other
+  lifecycle: unknown
+  owner: guests
