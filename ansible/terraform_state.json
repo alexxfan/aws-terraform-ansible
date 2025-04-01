@@ -2,22 +2,22 @@
   "haproxy_public_dns": {
     "sensitive": false,
     "type": "string",
-    "value": "ec2-3-80-179-26.compute-1.amazonaws.com"
+    "value": "ec2-34-239-139-83.compute-1.amazonaws.com"
   },
   "haproxy_public_ip": {
     "sensitive": false,
     "type": "string",
-    "value": "3.80.179.26"
+    "value": "34.239.139.83"
   },
   "private_subnet_id": {
     "sensitive": false,
     "type": "string",
-    "value": "subnet-086c36137957597b2"
+    "value": "subnet-019fbe5645049b844"
   },
   "public_subnet_id": {
     "sensitive": false,
     "type": "string",
-    "value": "subnet-00ef19f1f197f4adf"
+    "value": "subnet-09ed0ce89410339ec"
   },
   "ssh_key_path": {
     "sensitive": false,
@@ -27,7 +27,7 @@
   "vpc_id": {
     "sensitive": false,
     "type": "string",
-    "value": "vpc-07ed00fb3a449b8b2"
+    "value": "vpc-09ec6e9f993c43004"
   },
   "webserver_ids": {
     "sensitive": false,
@@ -39,8 +39,8 @@
       ]
     ],
     "value": [
-      "i-0948c73a058694fcd",
-      "i-09ed7cd36b6de58b6"
+      "i-08367376a4cfd120d",
+      "i-00a1a1dbd1d00dda7"
     ]
   },
   "webserver_private_ips": {
@@ -53,8 +53,8 @@
       ]
     ],
     "value": [
-      "10.0.2.232",
-      "10.0.2.14"
+      "10.0.2.199",
+      "10.0.2.45"
     ]
   }
 }
